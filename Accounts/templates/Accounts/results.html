@@ -1,0 +1,64 @@
+{% extends "Accounts/Padre.html" %}
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link href="{% static 'Accounts/Page/assets/css/style.css' %}" rel="stylesheet">
+{% block titulo %} Blogs{% endblock %}
+
+{% block Main %}
+<section id="hero2" class="d-flex align-items-center">
+
+  <div class="container">
+    <div class="row">
+    </div>
+  </div>
+
+</section>
+
+<!-- End Hero -->
+{% endblock %}
+
+{% block bloque2 %} 
+<div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+
+    <main class="container">
+
+        <div class="row g-5">
+            <div class="col-md-8">
+                <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                    Los resultados de la busqueda:"{{ query }}" son : 
+                </h3>
+                {% for Post in post_list %}
+                    <div class="card mb-3">
+                        {% if post.imagen %}
+                            <img src="{{ Post.image.url }}" class="card-img-top" alt="thumbnail">
+                        {% endif %}
+                        <div class="card-body">
+                            <a href="{% url 'Post'  Post.slug %}" style="text-decoration: none"
+                            class="text-black">
+                            <h5 class="card-title">{{ Post.titulo }}</h5> </a>
+                            <p class="card-text">{{ Post.resumen }}</p>
+                            <p class="card-text"><small class="text-muted">Last updated {{ Post.now_date.date }}</small></p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <p><a href="{% url 'index' %}"> Realiza otra busqueda</a></p>
+            </div>
+
+            <div class="col-md-4">
+                <div class="position-sticky" style="top: 2rem;">
+                    <div class="p-4 mb-3 bg-light rounded">
+                        <h4 class="fst-italic">Encontrados:</h4>
+                        <p class="mb-0">{{ post_list|length }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+    </main>
+</div>
+{% endblock %}

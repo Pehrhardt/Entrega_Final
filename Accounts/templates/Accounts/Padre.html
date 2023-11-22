@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{% block titulo %} {% endblock %}</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'Accounts/Page/assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'Accounts/Page/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'Accounts/Page/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'Accounts/Page/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'Accounts/Page/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'Accounts/Page/assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'Accounts/Page/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'Accounts/Page/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'Accounts/Page/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'Accounts/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'Accounts/Page/assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">Entrega Final </a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{% url 'index' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'about' %}">About</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'Blogs' %}">Blog</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'publicar' %}">Publicar</a></li>
+          <li class="avatar2"> 
+            {% if request.user.avatar_set.exists %}
+            {% if request.user.avatar_set.first.imagen %}
+                <img src="{{ request.user.avatar_set.first.imagen.url }}" class="rounded-circle" width="30px" alt="Avatar de {{ request.user.username }}">
+            {% else %}
+                <!-- Si no existe el objeto Avatar -->
+            <img src="{% static 'Accounts/nonavatar.png' %}" alt="user" class="rounded-circle" width="31">
+            {% endif %}
+        {% else %}
+            <!-- Si no existe el objeto Avatar -->
+            <img src="{% static 'Accounts/nonavatar.png' %}" alt="user" class="rounded-circle" width="31">
+        {% endif %}</li>
+          <li class="dropdown scrollto"><a href="#" class="perfil"><span>{{request.user.username}} </span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              {% if user.is_superuser %}
+              <li><a href="{% url 'lista_categorias' %}"> Categorias</a></li>
+              {% endif %}
+              <li><a href="{% url 'mispost' %}">Mis Posts</a></li>
+              <li><a href="{% url 'editarperfil' %}">Editar Perfil</a></li>
+              <li><a href="{% url 'verperfil' %}">Ver perfil</a></li>
+               <li><a href="{% url 'salir' %}">Log Out</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  {% block Main %}
+ {% endblock %}
+  <main id="main">
+
+    <!-- ======= Clients Section ======= -->
+    {% block bloque1 %}
+    
+  {% endblock %}
+    <!-- End Cliens Section -->
+
+    <!-- ======= About Us Section ======= -->
+  {% block bloque2 %}
+    
+  {% endblock %}
+    <!-- End About Us Section -->
+    
+    <!-- ======= Why Us Section ======= -->
+    {% block bloque3 %}
+    {% endblock %} 
+    <!-- End Why Us Section -->
+   
+    <!-- ======= Team Section ======= -->
+    {% block bloque4 %}
+    {% endblock %}
+    <!-- End Team Section -->
+    <!-- ======= Pricing Section ======= -->
+    {% block bloque5 %}
+    
+    {% endblock %}
+    <!-- End Pricing Section -->
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Funcionalidades de la Pagina</h2>
+          <p> Para poder ingresar a cualquier parte de la página se deberá iniciar sesion dentro del login</p>
+        </div>
+
+        <div class="faq-list">
+          <ul>
+            <li data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1"> Sección Login y registro <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                <p>
+                 En esta sección inicial permite al usuario registrarse, repitiendo su password para evitar que tenga errores de tipeo y a su vez teniendo una contraseña mayor a 8 caracteres
+                 con mayusculas y números incluidos. Una vez registrado, el usuario puedo logear en la página principal y ver el resto del sitio.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">La sección de editar perfil y avatar<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Esta sección permite modificar el nombre y apellido de cada uno de los usuarios registrados como también su email, dentro de esta se podrá ver un boton para acceder al cambio de imagen de perfil
+                  que puede ser reemplazadas las veces que el usuario desee. 
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">La sección de Blog<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                 En esta sección se visualizarán los distintos artículos escritos por los usuarios que se publicarán a través de la página publicar.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="400">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Publicar <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="500">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
+
+    
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Pablo Ehrhardt</span></strong>. Todos los derechos reservados
+      </div>
+      <div class="credits">
+        Desarrollado por Pablo Ehrhardt
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'Accounts/Page/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'Accounts/Page/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'Accounts/Page/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'Accounts/Page/assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'Accounts/Page/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'Accounts/Page/assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+  <script src="{% static 'Accounts/Page/assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'Accounts/Page/assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

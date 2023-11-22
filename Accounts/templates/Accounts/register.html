@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load static %}
+	<title>Ingresa a mi Blog</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'Accounts/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Accounts/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Accounts/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Accounts/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'Accounts/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Accounts/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'Accounts/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'Accounts/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'Accounts/images/img-01.png' %}" alt="IMG">
+				</div>
+
+				<form class="login100-form validate-form" method="POST">
+					{% csrf_token %}
+					<span class="login100-form-title">
+						Crea tu cuenta
+					</span>
+					<div class="wrap-input100 validate-input" data-validate = "Ingrese un usuario valido">
+						<input class="input100" type="text" name="username" placeholder="Ingrese su usuario" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Ingrese un nombre valido">
+						<input class="input100" type="text" name="first_name" placeholder="Ingrese su Nombre" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Ingrese un apellido valido">
+						<input class="input100" type="text" name="last_name" placeholder="Ingrese su Apellido" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz" >
+						<input class="input100" type="text" name="email" placeholder="Ingrese su Email" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="password1" placeholder="Ingrese su contraseña" required widget=forms.PasswordInput>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Repeat Password">
+						<input class="input100" type="password" name="password2" placeholder="Repita su contraseña" required widget=forms.PasswordInput>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					{% if form.errors %}
+					<ul>
+						{% for field in form %}
+							{% for error in field.errors %}
+								<li>{{ field.label }}: {{ error }}</li>
+							{% endfor %}
+						{% endfor %}
+					</ul>
+				{% endif %}
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit" value="send">
+							Crear cuenta
+						</button>
+					</div>
+					
+					<div class="text-center p-t-136">
+						<a class="txt2" href="{% url 'index' %}">
+							<i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
+							Volver al login
+							
+						</a>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="{% static 'Accounts/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'Accounts/js/main.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'Accounts/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'Accounts/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'Accounts/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'Accounts/vendor/tilt/tilt.jquery.min.js'%}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+
+</body>
+</html>
